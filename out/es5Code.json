@@ -1,0 +1,174 @@
+"use strict";
+
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _typeof = require("@babel/runtime/helpers/typeof");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _classnames = _interopRequireDefault(require("classnames"));
+
+var _reactDom = _interopRequireDefault(require("react-dom"));
+
+var _Button = _interopRequireDefault(require("@/Button"));
+
+var _Mask = _interopRequireDefault(require("@/Mask"));
+
+var _util = require("@/_util");
+
+var _modalManager = require("./util/modalManager");
+
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var Modal = function Modal(_ref) {
+  var customizePrefixCls = _ref.prefixCls,
+      className = _ref.className,
+      title = _ref.title,
+      content = _ref.content,
+      type = _ref.type,
+      visible = _ref.visible,
+      confirmLoading = _ref.confirmLoading,
+      children = _ref.children,
+      customFooter = _ref.footer,
+      getContainer = _ref.getContainer,
+      onClose = _ref.onClose,
+      onOk = _ref.onOk,
+      onCancel = _ref.onCancel,
+      wrapperStyle = _ref.wrapperStyle,
+      headerStyle = _ref.headerStyle,
+      bodyStyle = _ref.bodyStyle,
+      footerStyle = _ref.footerStyle;
+
+  var _useState = (0, _react.useState)(visible),
+      _useState2 = (0, _slicedToArray2["default"])(_useState, 2),
+      show = _useState2[0],
+      setShow = _useState2[1];
+
+  var prefixCls = (0, _util.getPrefixCls)("modal", customizePrefixCls);
+  var modalRef = (0, _react.useRef)(null);
+  (0, _modalManager.useModalManager)(modalRef, visible);
+  (0, _react.useEffect)(function () {
+    setShow(visible);
+  }, [visible]);
+
+  var handleCloseModal = function handleCloseModal() {
+    setShow(false);
+
+    if (typeof onClose === "function") {
+      onClose();
+    } else {
+      if (typeof onCancel === "function") {
+        onCancel();
+      }
+    }
+  };
+
+  var handleOk = function handleOk(e) {
+    onOk === null || onOk === void 0 ? void 0 : onOk(e);
+  };
+
+  var handleCancel = function handleCancel(e) {
+    setShow(false);
+    onCancel === null || onCancel === void 0 ? void 0 : onCancel(e);
+  };
+
+  (0, _react.useEffect)(function () {
+    if (show === true && confirmLoading === false) {
+      setShow(false);
+    }
+  }, [confirmLoading]);
+  (0, _react.useEffect)(function () {
+    if (show) {
+      document.body.classList.add("x-scrolling-effect");
+    } else {
+      document.body.classList.remove("x-scrolling-effect");
+    }
+  }, [show]);
+
+  var handleKeydown = function handleKeydown(event) {
+    // Only the last modal need to be escaped when pressing the esc key
+    if (event.key !== "Escape" || !_modalManager.modalManager.isTopModal(modalRef)) {
+      return;
+    }
+
+    handleCancel();
+  };
+
+  (0, _react.useEffect)(function () {
+    if (show) {
+      document.addEventListener("keydown", handleKeydown);
+    }
+
+    return function () {
+      document.removeEventListener("keydown", handleKeydown);
+    };
+  }, [show]);
+  var titleClose = (0, _react.useMemo)(function () {
+    return !type ? /*#__PURE__*/_react["default"].createElement(_Button["default"], {
+      type: "text",
+      onClick: handleCloseModal
+    }, /*#__PURE__*/_react["default"].createElement("span", {
+      className: (0, _classnames["default"])("".concat(prefixCls, "-close-x"))
+    }, "\xD7")) : null;
+  }, [type]);
+  var footer = (0, _react.useMemo)(function () {
+    return type ? /*#__PURE__*/_react["default"].createElement(_Button["default"], {
+      type: "primary",
+      onClick: handleCancel
+    }, "\u6211\u77E5\u9053\u4E86") : /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(_Button["default"], {
+      type: "default",
+      onClick: handleCancel
+    }, "\u53D6\u6D88"), /*#__PURE__*/_react["default"].createElement(_Button["default"], {
+      type: "primary",
+      onClick: handleOk,
+      loading: confirmLoading
+    }, "\u786E\u5B9A"));
+  }, [type]);
+
+  var modalContent = /*#__PURE__*/_react["default"].createElement("div", {
+    className: (0, _classnames["default"])("".concat(prefixCls, "-content")),
+    style: wrapperStyle
+  }, /*#__PURE__*/_react["default"].createElement("div", {
+    className: (0, _classnames["default"])("".concat(prefixCls, "-header")),
+    style: headerStyle
+  }, /*#__PURE__*/_react["default"].createElement("div", {
+    className: (0, _classnames["default"])("".concat(prefixCls, "-title"))
+  }, title), titleClose), /*#__PURE__*/_react["default"].createElement("div", {
+    className: (0, _classnames["default"])("".concat(prefixCls, "-body")),
+    style: bodyStyle
+  }, type ? content : children), /*#__PURE__*/_react["default"].createElement("div", {
+    className: (0, _classnames["default"])("".concat(prefixCls, "-footer")),
+    style: footerStyle
+  }, customFooter !== null && customFooter !== void 0 ? customFooter : footer));
+
+  var container = (0, _util.getParent)(getContainer);
+
+  var modal = /*#__PURE__*/_react["default"].createElement("div", {
+    className: (0, _classnames["default"])(prefixCls, className)
+  }, /*#__PURE__*/_react["default"].createElement(_Mask["default"], {
+    visible: show,
+    maskClick: function maskClick() {},
+    onClose: function onClose() {},
+    style: {
+      backgroundColor: "inherit"
+    }
+  }), /*#__PURE__*/_react["default"].createElement("div", {
+    role: "dialog",
+    ref: modalRef,
+    className: (0, _classnames["default"])("".concat(prefixCls, "-wrapper"))
+  }, modalContent));
+
+  return show ? /*#__PURE__*/_reactDom["default"].createPortal(modal, container) : null;
+};
+
+var _default = Modal;
+exports["default"] = _default;
