@@ -15,6 +15,7 @@ import { modalManager, useModalManager } from "./util/modalManager";
 interface ConfirmProps {
   /**
    * 提示类型
+   * @default info
    */
   type?: "info" | "success" | "confirm" | "warn" | "warning" | "error";
   /**
@@ -92,14 +93,17 @@ interface StyleProps {
  * 自定义Props
  */
 interface CustomProps {
-  /** x1 */
+  /** xx1 */
   x1: number;
-  /** x2 */
+  /** xx2 */
   x2: number;
-  /** x3 */
+  /** xx3 */
   x3: number;
 }
 
+/**
+ * 模态框Props
+ */
 export interface ModalProps
   extends ConfirmProps,
     FooterProps,
@@ -125,14 +129,14 @@ export interface ModalProps
    * 子结点
    */
   children?: React.ReactNode;
-  /***
+  /**
    * okCancel
    */
   okCancel?: boolean;
   /**
    * CustomProps
    */
-  customProps: CustomProps;
+  customProps?: CustomProps;
 }
 
 const Modal: any = ({
