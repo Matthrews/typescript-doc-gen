@@ -1,10 +1,12 @@
 #!/usr/bin/env node
-const { program } = require("commander");
-const { prompt } = require("inquirer");
-const { showSample, generateDoc } = require("./main");
+
+import Console from "console";
+import Commander from "commander";
+import Inquirer from "inquirer";
+import { showSample, generateDoc } from "./main";
 // const pkg = require("./package");
 
-program
+Commander.program
   .version("1.0.0")
   .description(
     "A command tools for transforming TSX interface to Markdown easily!"
@@ -12,20 +14,22 @@ program
   .name("doc-gen")
   .usage("[options] [command]");
 
-program.option("-only, --onlyData", "just output raw data");
+Commander.program
+  .option("-c, --clean", "Clean mode: Only yeild result.")
+  .option("-d, --debug", "Debug mode: Yeild result and display procedure.");
 
-program
+Commander.program
   .command("example")
   .description("show example")
   .action(() => {
     void showSample();
   });
 
-program
+Commander.program
   .command("generate <path> [outDir]") // <required> [optional]
   .description("generate tsx interface to Markdown")
   .action((path, outDir, ...args) => {
-    // prompt({
+    // Inquirer.prompt({
     //   type: "input",
     //   name: "path",
     //   message: "Input your path of TSX file",
@@ -37,4 +41,9 @@ program
     void generateDoc(path, outDir);
   });
 
-program.parse(process.argv);
+Commander.program.parse(process.argv);
+
+if ("clean" in Commander.program) {
+  console.log("clean");
+  // Console.prototype.log = () => {};
+}
