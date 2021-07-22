@@ -86,7 +86,7 @@ export function parseCommentBlock(rawComments: string, tag?: string) {
   if (!tag) return comments[0]; // 第一个应该是description
 
   const findStr = comments.find((str) => str.includes(`@${tag}`)) || "";
-  const searchResult = findStr.match(/(@`${tag}`)?\s+(\w+)/);
+  const searchResult = findStr.match(/(@`${tag}`)?\s+([\w\W]*)/);
   return searchResult?.length === 3 ? searchResult[2] : "";
 }
 

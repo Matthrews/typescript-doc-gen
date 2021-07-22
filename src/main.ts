@@ -1,11 +1,11 @@
-import { mkdirSync, readFileSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import { resolve } from "path";
 import { BabelFileResult, transformSync } from "@babel/core";
 import { parse } from "@babel/parser";
 import traverse from "@babel/traverse";
+import chalk from "chalk";
 import { presets, plugins, parserPlugins } from "../utils/constant";
 import { generateMarkdown } from "../utils/helper";
-import ansiEscapes from "ansi-escapes";
 
 const showSample = () => {
   const projectRoot = resolve(__dirname, "../source");
@@ -65,6 +65,12 @@ const showSample = () => {
   console.log("Finished!");
 };
 
+/**
+ * 生成文档，暂时仅支持转为Markdown
+ * @param path 文件路径
+ * @param outDir 输出文件位置
+ * @returns
+ */
 const generateDoc = (path: string, outDir: string = "./out") => {
   console.log("generateDoc", path, outDir);
   const esNextCode: string = readFileSync(path).toString();
@@ -94,7 +100,9 @@ const generateDoc = (path: string, outDir: string = "./out") => {
 
   console.log("Starting writing to out directory......");
 
-  mkdirSync(outDir);
+  if (!existsSync(outDir)) {
+    mkdirSync(outDir);
+  }
 
   writeFileSync(`${outDir}\\esNextCode.json`, esNextCode);
   writeFileSync(`${outDir}\\es5Code.json`, es5Code ?? "");
@@ -120,10 +128,9 @@ const generateDoc = (path: string, outDir: string = "./out") => {
 
   const result = generateMarkdown(interfaceCollection);
 
-  mkdirSync(resolve(outDir, "./md"));
-  writeFileSync(`${resolve(outDir, "./md")}/API.md`, result);
+  writeFileSync(`${resolve(outDir)}/API.md`, result);
 
-  console.log(ansiEscapes.link("Show Files", `${resolve(outDir, "./md")}/API.md`));
+  console.log(chalk.green("Show Files"), `${resolve(outDir)}`);
 };
 
 export { showSample, generateDoc };

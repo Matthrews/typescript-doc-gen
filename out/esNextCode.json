@@ -20,6 +20,7 @@ interface ConfirmProps {
   type?: "info" | "success" | "confirm" | "warn" | "warning" | "error";
   /**
    * 提示标题
+   * @note 我是备注
    */
   title?: string;
   /**
