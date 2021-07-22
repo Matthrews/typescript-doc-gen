@@ -23,9 +23,6 @@ interface ConfirmProps {
    * @note 我是备注
    */
   title?: string;
-  /**
-   * 提示内容
-   */
   content?: React.ReactNode;
 }
 
