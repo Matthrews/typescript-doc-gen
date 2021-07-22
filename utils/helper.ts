@@ -29,19 +29,21 @@ export function generateMarkdown(interfaceCollection: any[]) {
       const {
         optional,
         key: { name = "" },
-        leadingComments: [{ value = "" }],
+        leadingComments,
         typeAnnotation: { typeAnnotation = {} },
       } = property;
       const type = parseTypeAnnotation(typeAnnotation);
       const required = optional ? "--" : "是";
+      // 注意无注释的情况
+      const [{ value = "" }] = leadingComments ?? [{ value: "" }];
       const comment = parseCommentBlock(value);
       const note = parseCommentBlock(value, "note");
+      // comment + note
+      const desc = `${comment ?? ""} ${note ? `<br/> ${note}` : ""}`;
 
       const defaultValue = parseCommentBlock(value, "default") || "--";
       contents.push(
-        `| ${name} | ${comment} ${
-          note ? `<br/> ${note}` : ""
-        } | <code>${type}</code> | <code>${required}</code> | <code>${defaultValue}</code> |`
+        `| ${name} | ${desc || '--'} | <code>${type}</code> | <code>${required}</code> | <code>${defaultValue}</code> |`
       );
     });
 

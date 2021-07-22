@@ -93,7 +93,8 @@ export function parseCommentBlock(rawComments: string, tag?: string) {
 export function parseInterfaceDefinitions(nodePaths) {
   const parseInterfaceDefinitionsNode = (nodePath) => {
     const name = get(nodePath, "key.name");
-    const comments = get(nodePath, "leadingComments.0.value", "")
+    const hasComments = !!get(nodePath, "leadingComments");
+    const comments = (hasComments ? get(nodePath, "leadingComments.0.value", "") : '')
       .trim()
       .split(/[\r\n]/)
       .map((str) => str.trim().replace(/^\*/g, "").trim())
