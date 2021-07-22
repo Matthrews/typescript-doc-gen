@@ -3,13 +3,16 @@
 import Console from "console";
 import Commander from "commander";
 import Inquirer from "inquirer";
+import chalk from "chalk";
 import { showSample, generateDoc } from "./main";
 // const pkg = require("./package");
 
 Commander.program
   .version("1.0.0")
   .description(
-    "A command tools for transforming TSX interface to Markdown easily!"
+    chalk.bgGreen.bold(
+      "A command tools for transforming TSX interface to Markdown easily!"
+    )
   )
   .name("doc-gen")
   .usage("[options] [command]");

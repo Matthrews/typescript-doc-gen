@@ -35,9 +35,13 @@ export function generateMarkdown(interfaceCollection: any[]) {
       const type = parseTypeAnnotation(typeAnnotation);
       const required = optional ? "--" : "是";
       const comment = parseCommentBlock(value);
+      const note = parseCommentBlock(value, "note");
+
       const defaultValue = parseCommentBlock(value, "default") || "--";
       contents.push(
-        `| ${name} | ${comment} | <code>${type}</code> | <code>${required}</code> | <code>${defaultValue}</code> |`
+        `| ${name} | ${comment} ${
+          note ? `<br/> ${note}` : ""
+        } | <code>${type}</code> | <code>${required}</code> | <code>${defaultValue}</code> |`
       );
     });
 
