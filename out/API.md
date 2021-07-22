@@ -18,7 +18,7 @@
 | ------- | ----------------------- | ------------------------------------------------------------------- | --------------- | ----------------- |
 | type    | 提示类型                | <code>info \| success \| confirm \| warn \| warning \| error</code> | <code>--</code> | <code>info</code> |
 | title   | 提示标题 <br/> 我是备注 | <code>string</code>                                                 | <code>--</code> | <code>--</code>   |
-| content | 提示内容                | <code>React.ReactNode</code>                                        | <code>--</code> | <code>--</code>   |
+| content |                         | <code>React.ReactNode</code>                                        | <code>--</code> | <code>--</code>   |
 
 ### FooterProps
 

@@ -128,7 +128,7 @@ const generateDoc = (path: string, outDir: string = "./out") => {
   );
 
   const result = prettier.format(generateMarkdown(interfaceCollection), {
-    parser: "md",
+    parser: "markdown",
   });
 
   writeFileSync(`${resolve(outDir)}/API.md`, result);
