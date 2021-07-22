@@ -4,6 +4,7 @@ import { BabelFileResult, transformSync } from "@babel/core";
 import { parse } from "@babel/parser";
 import traverse from "@babel/traverse";
 import chalk from "chalk";
+import prettier from "prettier";
 import { presets, plugins, parserPlugins } from "../utils/constant";
 import { generateMarkdown } from "../utils/helper";
 
@@ -126,11 +127,13 @@ const generateDoc = (path: string, outDir: string = "./out") => {
     JSON.stringify(interfaceCollection, null, 2)
   );
 
-  const result = generateMarkdown(interfaceCollection);
+  const result = prettier.format(generateMarkdown(interfaceCollection), {
+    parser: "md",
+  });
 
   writeFileSync(`${resolve(outDir)}/API.md`, result);
 
-  console.log(chalk.green("Show Files"), `${resolve(outDir)}`);
+  console.log(chalk.green("Info: "), `${resolve(outDir)}`);
 };
 
 export { showSample, generateDoc };
