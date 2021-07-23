@@ -28,7 +28,10 @@
 
 ![chalk](https://cdn.jsdelivr.net/gh/Matthrews/zm_cdn/images/chalk.png)
 
+## NPM 发布
 
-## NPM发布
+[关于 npm verison](https://www.jianshu.com/p/5565536a1f82)
 
-https://www.jianshu.com/p/5565536a1f82
+[关于文件模式匹配](https://github.com/whinc/blog/issues/18)
+
+[关于代码压缩混淆](https://www.npmjs.com/package/uglify-js)
