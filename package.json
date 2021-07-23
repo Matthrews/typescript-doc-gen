@@ -1,6 +1,6 @@
 {
   "name": "typescript-doc-gen",
-  "version": "1.0.7-0",
+  "version": "1.0.8-0",
   "description": "一个快速将TSX interface转成Markdown的命令行工具",
   "main": "dist/src/main.js",
   "license": "MIT",
