@@ -1,14 +1,17 @@
 # typescript-doc-gen
 
-transform TSX interface to Markdown
+一个快速将 TSX interface 转成 Markdown 的命令行工具
 
-## 如何使用
+## 如何开始
 
 ```bash
 npm install -g typescript-doc-gen
 doc-gen
-# 将sample.tsx 文件的interface转化为Markdown
-doc-gen generate C:\\Users\\Matthew\\Desktop\\typescript-doc-gen\\source\\sample.tsx
+# 将`src\\Sample\\index.tsx`文件的interface提取出Markdown，默认保存到当前目录out下，注意在`.gitignore`文件里面添加out目录
+doc-gen generate src\\Sample\\index.tsx
+
+# or 将`src\\Sample\\index.tsx`文件的interface提取出Markdown 并保存到桌面
+doc-gen generate src\\Sample\\index.tsx D:\\Users\\admin\\Desktop
 ```
 
 ## 功能
@@ -17,18 +20,19 @@ doc-gen generate C:\\Users\\Matthew\\Desktop\\typescript-doc-gen\\source\\sample
 - 识别 extends，将其内容转化为子表格
 - 识别自定义类型，将其转化为子表并内链
 
-## TODO
+## 来喷源码
 
-## 同类产品
+```bash
+git clone git@gitlab.zmaxis.com:rongfu.zhu/typescript-doc-gen.git
+cd typescript-doc-gen
+yarn
+yarn gen
+```
+
+## 去喷竞品
 
 [api-hose](https://github.com/HerbertHe/api-hose)
 
 [react-docgen-typescript](https://www.npmjs.com/package/react-docgen-typescript)
 
 [Documentation](http://documentation.js.org/)
-
-## 其他
-
-[Swagger](https://swagger.io/)
-
-[typedoc](https://www.npmjs.com/package/typedoc)

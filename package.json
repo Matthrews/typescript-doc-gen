@@ -1,19 +1,18 @@
 {
   "name": "typescript-doc-gen",
-  "version": "1.0.0",
+  "version": "1.0.3",
+  "description": "一个快速将TSX interface转成Markdown的命令行工具",
   "main": "dist/src/main.js",
-  "repository": "git@github.com:Matthrews/typescript-doc-gen.git",
-  "author": "Oliver <matthrews@outlook.com>",
   "license": "MIT",
   "engines": {
     "node": ">=14"
   },
   "bin": {
-    "tsdg": "dist/src/cli.js",
-    "doc-gen": "dist/src/cli.js"
+    "doc-gen": "dist/src/cli.js",
+    "tsdg": "dist/src/cli.js"
   },
   "files": [
-    "src/*.ts"
+    "dist/**/*.js"
   ],
   "keywords": [
     "Typescript",
@@ -25,7 +24,10 @@
     "dev": "ts-node-dev ./src/main.ts",
     "format": "prettier --write markdown/*.{json,js,md,yml}",
     "parse": "babel src -d dist -x .ts,.js",
-    "build": "tsc"
+    "build": "tsc",
+    "copyPackageJson": "cp package.json dist/",
+    "copySample": "cp source/sample.tsx dist/",
+    "prepublish": "npm run build && npm run copyPackageJson && npm run copySample"
   },
   "dependencies": {
     "@babel/core": "7.12.3",
@@ -35,10 +37,8 @@
     "@babel/plugin-proposal-decorators": "7.14.5",
     "@babel/plugin-proposal-private-methods": "7.14.5",
     "@babel/plugin-syntax-dynamic-import": "7.8.3",
-    "@babel/plugin-transform-modules-commonjs": "7.14.5",
-    "@babel/plugin-transform-runtime": "7.14.5",
+    "@babel/plugin-transform-runtime": "^7.14.5",
     "@babel/preset-env": "7.14.7",
-    "@babel/preset-flow": "7.14.5",
     "@babel/preset-react": "7.14.5",
     "@babel/preset-typescript": "7.14.5",
     "@babel/traverse": "7.12.5",
@@ -58,5 +58,9 @@
     "ts-node": "9.0.0",
     "ts-node-dev": "1.1.8",
     "typescript": "4.0.5"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   }
 }

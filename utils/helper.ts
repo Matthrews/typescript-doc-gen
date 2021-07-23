@@ -1,5 +1,5 @@
 import { parseTypeAnnotation, parseCommentBlock } from "./parser";
-import { LINE_BREAK } from "./constant";
+import { U_LINE_BREAK, MD_LINE_BREAK } from "./constant";
 
 export function generateMarkdown(interfaceCollection: any[]) {
   const mdTitle = "## API";
@@ -14,7 +14,7 @@ export function generateMarkdown(interfaceCollection: any[]) {
     "Author: Oliver <matthrews@outlook.com>",
     "License: MIT",
     "Repo: https://github.com/Matthrews/typescript-doc-gen",
-  ];
+  ].join(MD_LINE_BREAK);
 
   const bodyContent: string[] = [];
 
@@ -23,7 +23,7 @@ export function generateMarkdown(interfaceCollection: any[]) {
       id: { name = "" },
       body: { body: properties = [] },
     } = interfaceItem;
-    const contents = [`### ${name}${LINE_BREAK}`].concat(mdTemplate);
+    const contents = [`### ${name}${U_LINE_BREAK}`].concat(mdTemplate);
 
     properties.forEach((property: any) => {
       const {
@@ -39,18 +39,20 @@ export function generateMarkdown(interfaceCollection: any[]) {
       const comment = parseCommentBlock(value);
       const note = parseCommentBlock(value, "note");
       // comment + note
-      const desc = `${comment ?? ""} ${note ? `<br/> ${note}` : ""}`;
+      const desc = `${comment ?? ""} ${note ? `${MD_LINE_BREAK} ${note}` : ""}`;
 
       const defaultValue = parseCommentBlock(value, "default") || "--";
       contents.push(
-        `| ${name} | ${desc || '--'} | <code>${type}</code> | <code>${required}</code> | <code>${defaultValue}</code> |`
+        `| ${name} | ${
+          desc || "--"
+        } | <code>${type}</code> | <code>${required}</code> | <code>${defaultValue}</code> |`
       );
     });
 
-    contents.push(LINE_BREAK);
+    contents.push(U_LINE_BREAK);
 
-    bodyContent.push(contents.join(LINE_BREAK));
+    bodyContent.push(contents.join(U_LINE_BREAK));
   });
 
-  return [mdTitle].concat(bodyContent).concat(extraInfo).join(LINE_BREAK);
+  return [mdTitle].concat(bodyContent).concat(extraInfo).join(U_LINE_BREAK);
 }
