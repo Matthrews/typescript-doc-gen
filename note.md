@@ -27,3 +27,8 @@
 - [让你的命令行输出高逼格](https://www.npmjs.com/package/chalk)
 
 ![chalk](https://cdn.jsdelivr.net/gh/Matthrews/zm_cdn/images/chalk.png)
+
+
+## NPM发布
+
+https://www.jianshu.com/p/5565536a1f82
