@@ -1,22 +1,20 @@
 export const presets = [
   [
-    "@babel/preset-env",
-    {
-      modules: false,
-    },
+      "@babel/preset-env",
+      {
+          modules: false,
+      },
   ],
   "@babel/preset-react",
-  "@babel/preset-flow",
   [
-    "@babel/preset-typescript",
-    {
-      isTSX: true,
-      allExtensions: true,
-      allowDeclareFields: true,
-    },
+      "@babel/preset-typescript",
+      {
+          isTSX: true,  // 此处不配置不识别TSX
+          allExtensions: true,
+          allowDeclareFields: true,
+      },
   ],
 ];
-
 export const plugins = [
   ["@babel/plugin-proposal-decorators", { legacy: true }],
   ["@babel/plugin-proposal-class-properties", { loose: true }],
@@ -25,6 +23,7 @@ export const plugins = [
   ["@babel/plugin-transform-runtime"],
   ["@babel/plugin-transform-modules-commonjs"],
 ];
+
 
 export const parserPlugins = [
   "jsx",
@@ -52,6 +51,9 @@ export const parserPlugins = [
   "throwExpressions",
   "topLevelAwait",
   "estree",
-];
+]
 
-export const LINE_BREAK = "\r\n";
+
+export const U_LINE_BREAK = '\r\n';
+
+export const MD_LINE_BREAK = "<br />"
