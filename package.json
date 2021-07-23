@@ -29,8 +29,9 @@
     "build": "tsc",
     "copyPackageJson": "cp package.json dist/",
     "copySample": "cp source/sample.tsx dist/",
+    "clean": "rm -rf dist/dist/",
     "minifier": "uglifyjs --compress --mangle -- dist/**/*.js",
-    "prepublishOnly": "npm run build && npm run copyPackageJson && npm run copySample"
+    "prepublishOnly": "npm run build && npm run copyPackageJson && npm run copySample && npm run clean"
   },
   "dependencies": {
     "@babel/core": "7.12.3",
