@@ -1,6 +1,6 @@
 {
   "name": "typescript-doc-gen",
-  "version": "1.0.6",
+  "version": "1.0.8-0",
   "description": "一个快速将TSX interface转成Markdown的命令行工具",
   "main": "dist/src/main.js",
   "license": "MIT",
@@ -12,7 +12,9 @@
     "tsdg": "dist/src/cli.js"
   },
   "files": [
-    "dist/**/*.js"
+    "dist/**/*.js",
+    "dist/package.json",
+    "dist/sample.tsx"
   ],
   "keywords": [
     "Typescript",
@@ -27,7 +29,8 @@
     "build": "tsc",
     "copyPackageJson": "cp package.json dist/",
     "copySample": "cp source/sample.tsx dist/",
-    "prepublish": "npm run build && npm run copyPackageJson && npm run copySample"
+    "minifier": "uglifyjs --compress --mangle -- dist/**/*.js",
+    "prepublishOnly": "npm run build && npm run copyPackageJson && npm run copySample"
   },
   "dependencies": {
     "@babel/core": "7.12.3",
@@ -59,7 +62,8 @@
     "@types/prettier": "^2.3.2",
     "ts-node": "9.0.0",
     "ts-node-dev": "1.1.8",
-    "typescript": "4.0.5"
+    "typescript": "4.0.5",
+    "uglify-js": "^3.14.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
