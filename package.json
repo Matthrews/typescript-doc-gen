@@ -1,6 +1,6 @@
 {
   "name": "typescript-doc-gen",
-  "version": "1.0.5",
+  "version": "1.0.6-0",
   "description": "一个快速将TSX interface转成Markdown的命令行工具",
   "main": "dist/src/main.js",
   "license": "MIT",
@@ -27,8 +27,7 @@
     "build": "tsc",
     "copyPackageJson": "cp package.json dist/",
     "copySample": "cp source/sample.tsx dist/",
-    "prepublishOnly": "npm run build && npm run copyPackageJson && npm run copySample",
-    "postinstall": "npm run prepublishOnly"
+    "prepublish": "npm run build && npm run copyPackageJson && npm run copySample"
   },
   "dependencies": {
     "@babel/core": "7.12.3",
