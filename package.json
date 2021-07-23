@@ -27,7 +27,7 @@
     "build": "tsc",
     "copyPackageJson": "cp package.json dist/",
     "copySample": "cp source/sample.tsx dist/",
-    "prepublish": "npm run build && npm run copyPackageJson && npm run copySample"
+    "prepublishOnly": "npm run build && npm run copyPackageJson && npm run copySample"
   },
   "dependencies": {
     "@babel/core": "7.12.3",
