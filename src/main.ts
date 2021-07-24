@@ -32,8 +32,8 @@ const generateDoc = (path: string, outDir: string = cwd) => {
     esNextCode,
     {
       configFile: false,
-      presets,
-      plugins,
+      presets: presets,
+      plugins: plugins,
       filename: resolve(__dirname, "../error/error.ts"),
     }
   );
