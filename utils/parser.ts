@@ -1,4 +1,4 @@
-const get = require("lodash/get");
+import get  from "lodash/get";
 
 export function parseTSTypeReference(typeName) {
   const type = get(typeName, "type");
