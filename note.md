@@ -35,3 +35,6 @@
 [关于文件模式匹配](https://github.com/whinc/blog/issues/18)
 
 [关于代码压缩混淆](https://www.npmjs.com/package/uglify-js)
+
+## 关于装饰器的bug
+package.json里面的@babel/plugin-proposal-class-properties得放在@babel/plugin-proposal-decorators之前，否则会报错，原因不详
