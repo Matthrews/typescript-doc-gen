@@ -44,9 +44,9 @@ Commander.program
 Commander.program.addHelpText(
   "after",
   `
-  Examples:
-    $ doc-gen showExample
-    $ doc-gen generate src\\Sample\\index.tsx`
+Examples:
+  $ doc-gen showExample
+  $ doc-gen generate src\\Sample\\index.tsx`
 );
 
 Commander.program
