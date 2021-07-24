@@ -12,11 +12,19 @@ import { generateMarkdown } from "../utils/helper";
 
 const cwd = resolve("./out");
 
+/**
+ * 运行Demo
+ */
 const showExample = () => {
   const path = resolve(__dirname, "../sample.tsx");
   generateDoc(path);
 };
 
+/**
+ * 生成文档
+ * @param path TSX文件目录
+ * @param outDir 输出目录
+ */
 const generateDoc = (path: string, outDir: string = cwd) => {
   const esNextCode: string = readFileSync(path).toString();
 
