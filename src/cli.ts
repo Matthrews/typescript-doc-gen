@@ -41,7 +41,13 @@ Commander.program
     void generateDoc(path, outDir);
   });
 
-Commander.program.addHelpText( "after", `Examples: $ doc-gen showExample $ doc-gen generate src\\Sample\\index.tsx` );
+Commander.program.addHelpText(
+  "after",
+  `
+  Examples:
+    $ doc-gen showExample
+    $ doc-gen generate src\\Sample\\index.tsx`
+);
 
 Commander.program
   .option("-c, --clean", "清净模式: 只输出结果")
