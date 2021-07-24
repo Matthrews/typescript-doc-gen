@@ -61,7 +61,18 @@
 				<a href="#typescript-doc-gen" id="typescript-doc-gen" style="color: inherit; text-decoration: none;">
 					<h1>typescript-doc-gen</h1>
 				</a>
-				<p>transform TSX interface to Markdown</p>
+				<p>一个快速将 TSX interface 转成 Markdown 的命令行工具</p>
+				<a href="#如何开始" id="如何开始" style="color: inherit; text-decoration: none;">
+					<h2>如何开始</h2>
+				</a>
+				<pre><code class="language-bash"><span style="color: #000000">npm install -g typescript-doc-gen</span>
+<span style="color: #000000">doc-gen</span>
+<span style="color: #008000"># 将`src\\Sample\\index.tsx`文件的interface提取出Markdown，默认保存到当前目录out下，注意在`.gitignore`文件里面添加out目录</span>
+<span style="color: #000000">doc-gen generate src</span><span style="color: #EE0000">\\</span><span style="color: #000000">Sample</span><span style="color: #EE0000">\\</span><span style="color: #000000">index.tsx</span>
+
+<span style="color: #008000"># or 将`src\\Sample\\index.tsx`文件的interface提取出Markdown 并保存到桌面</span>
+<span style="color: #000000">doc-gen generate src</span><span style="color: #EE0000">\\</span><span style="color: #000000">Sample</span><span style="color: #EE0000">\\</span><span style="color: #000000">index.tsx D:</span><span style="color: #EE0000">\\</span><span style="color: #000000">Users</span><span style="color: #EE0000">\\</span><span style="color: #000000">admin</span><span style="color: #EE0000">\\</span><span style="color: #000000">Desktop</span>
+</code></pre>
 				<a href="#功能" id="功能" style="color: inherit; text-decoration: none;">
 					<h2>功能</h2>
 				</a>
@@ -70,20 +81,20 @@
 					<li>识别 extends，将其内容转化为子表格</li>
 					<li>识别自定义类型，将其转化为子表并内链</li>
 				</ul>
-				<a href="#todo" id="todo" style="color: inherit; text-decoration: none;">
-					<h2>TODO</h2>
+				<a href="#来喷源码" id="来喷源码" style="color: inherit; text-decoration: none;">
+					<h2>来喷源码</h2>
 				</a>
-				<a href="#同类产品" id="同类产品" style="color: inherit; text-decoration: none;">
-					<h2>同类产品</h2>
+				<pre><code class="language-bash"><span style="color: #000000">git clone git@gitlab.zmaxis.com:rongfu.zhu/typescript-doc-gen.git</span>
+<span style="color: #795E26">cd</span><span style="color: #000000"> typescript-doc-gen</span>
+<span style="color: #000000">yarn</span>
+<span style="color: #000000">yarn gen</span>
+</code></pre>
+				<a href="#去喷竞品" id="去喷竞品" style="color: inherit; text-decoration: none;">
+					<h2>去喷竞品</h2>
 				</a>
-				<p><a href="https://github.com/HerbertHe/api-hose">api-hose</a>
-					<a href="https://www.npmjs.com/package/react-docgen-typescript">react-docgen-typescript</a>
-				<a href="http://documentation.js.org/">Documentation</a></p>
-				<a href="#其他" id="其他" style="color: inherit; text-decoration: none;">
-					<h2>其他</h2>
-				</a>
-				<p><a href="https://swagger.io/">Swagger</a>
-				<a href="https://www.npmjs.com/package/typedoc">typedoc</a></p>
+				<p><a href="https://github.com/HerbertHe/api-hose">api-hose</a></p>
+				<p><a href="https://www.npmjs.com/package/react-docgen-typescript">react-docgen-typescript</a></p>
+				<p><a href="http://documentation.js.org/">Documentation</a></p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -96,11 +107,29 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-function">
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#Commander" class="tsd-kind-icon">Commander</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#Inquirer" class="tsd-kind-icon">Inquirer</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#chalk" class="tsd-kind-icon">chalk</a>
+					</li>
+					<li class=" tsd-kind-variable">
 						<a href="modules.html#generateDoc" class="tsd-kind-icon">generate<wbr>Doc</a>
 					</li>
-					<li class=" tsd-kind-function">
-						<a href="modules.html#showSample" class="tsd-kind-icon">show<wbr>Sample</a>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#options" class="tsd-kind-icon">options</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#pkg" class="tsd-kind-icon">pkg</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#questions" class="tsd-kind-icon">questions</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#showExample" class="tsd-kind-icon">show<wbr>Example</a>
 					</li>
 				</ul>
 			</nav>
