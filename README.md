@@ -20,6 +20,18 @@ doc-gen generate src\\Sample\\index.tsx D:\\Users\\admin\\Desktop
 - 识别 extends，将其内容转化为子表格
 - 识别自定义类型，将其转化为子表并内链
 
+## TODO
+
+- 识别框架属性
+
+- 自动依赖分析
+
+- 批量识别
+
+- 支持 Markdown、HTML、PDF 等多种格式，可配置
+
+- 插件化
+
 ## 来喷源码
 
 ```bash
@@ -29,7 +41,7 @@ yarn
 yarn gen
 ```
 
-## 去喷竞品
+## 同类产品
 
 [api-hose](https://github.com/HerbertHe/api-hose)
 

@@ -1,54 +1,33 @@
 import { resolve, join } from "path";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 
+import { BabelFileResult, transformSync } from "@babel/core";
 import { parse } from "@babel/parser";
 import traverse from "@babel/traverse";
-import { BabelFileResult, transformSync } from "@babel/core";
 import { format } from "prettier";
 import chalk from "chalk";
 
 import { presets, plugins, parserPlugins } from "../utils/constant";
 import { generateMarkdown } from "../utils/helper";
 
-const cwd = resolve("./out");
-
-/**
- * 运行Demo
- */
 const showExample = () => {
   const path = resolve(__dirname, "../sample.tsx");
   generateDoc(path);
 };
 
-/**
- * 生成文档
- * @param path TSX文件目录
- * @param outDir 输出目录
- */
-const generateDoc = (path: string, outDir: string = cwd) => {
+const generateDoc = (path: string, outDir: string = "./out") => {
   const esNextCode: string = readFileSync(path).toString();
 
   const babelTransformResult: BabelFileResult | null = transformSync(
     esNextCode,
-    {
-      configFile: false,
-      presets: presets,
-      plugins: plugins,
-      filename: resolve(__dirname, "../error/error.ts"),
-    }
+    { configFile: false, presets, plugins, filename: resolve(__dirname, "../error/error.ts"), }
   );
-  if (!babelTransformResult) {
-    console.log("transform failed");
-    return;
-  }
+  if (!babelTransformResult) { console.log("transform failed"); return; }
   const { code: es5Code } = babelTransformResult!;
 
   console.log("babel transforms......");
 
-  const ast = parse(esNextCode, {
-    sourceType: "module",
-    plugins: parserPlugins as any[],
-  });
+  const ast = parse(esNextCode, { sourceType: "module", plugins: parserPlugins as any[] });
 
   console.log("babel parses......");
   console.log("Starting writing to out directory......");
@@ -71,13 +50,8 @@ const generateDoc = (path: string, outDir: string = cwd) => {
     },
   });
 
-  writeFileSync(
-    join(outDir, "interface.json"),
-    JSON.stringify(interfaceCollection, null, 2)
-  );
-  const result = format(generateMarkdown(interfaceCollection), {
-    parser: "markdown",
-  }); // defalut format options
+  writeFileSync(join(outDir, "interface.json"), JSON.stringify(interfaceCollection, null, 2) );
+  const result = format(generateMarkdown(interfaceCollection), { parser: "markdown", }); // defalut format options
 
   writeFileSync(join(outDir, "API.md"), result);
 
