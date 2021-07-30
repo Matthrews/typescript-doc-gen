@@ -18,7 +18,7 @@
 
 - 完整的 node.js 命令行解决方案 [Commander](https://github.com/tj/commander.js/blob/master/Readme_zh-CN.md)
 
-![Commander](https://cdn.jsdelivr.net/gh/Matthrews/zm_cdn/images/cammader.png)
+![Commander](https://cdn.jsdelivr.net/gh/Matthrews/zm_cdn/images/commander.png)
 
 - 交互式命令行解决方案 [Inquirer](https://www.npmjs.com/package/inquirer)
 
