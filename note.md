@@ -4,6 +4,8 @@
 
 - [AST 实战](https://segmentfault.com/a/1190000016231512)
 
+- [使用 Acorn 来解析 JavaScript](https://segmentfault.com/a/1190000007473065)
+
 - [AST Query](https://github.com/SBoudrias/AST-query)
 
 - [recast](https://www.npmjs.com/package/recast)
