@@ -14,6 +14,9 @@
 
 - [Babel 官网](https://babeljs.io/docs/en/)
 
+- [抽象语法树 AST 与 编译器 Compiler](http://xaber.co/2019/09/04/%E6%8A%BD%E8%B1%A1%E8%AF%AD%E6%B3%95%E6%A0%91-AST-%E4%B8%8E-%E7%BC%96%E8%AF%91%E5%99%A8-Compiler/
+)
+
 ## 关于 Cli
 
 > 不得不提到的大佬 TJ：[TJ Holowaychuk](https://github.com/tj)
